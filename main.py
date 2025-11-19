@@ -171,6 +171,10 @@ if __name__ == '__main__':
     logger.info("Retrieving Zotero corpus...")
     corpus = get_zotero_corpus(args.zotero_id, args.zotero_key)
     logger.info(f"Retrieved {len(corpus)} papers from Zotero.")
+    logger.info("Corpus content dump:")
+    for idx, item in enumerate(corpus):
+        logger.info(f"--- Item {idx} ---")
+        logger.info(json.dumps(item, ensure_ascii=False, indent=2, default=str))
     if args.zotero_ignore:
         logger.info(f"Ignoring papers in:\n {args.zotero_ignore}...")
         corpus = filter_corpus(corpus, args.zotero_ignore)
